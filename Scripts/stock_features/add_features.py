@@ -27,7 +27,10 @@ def add_features(returns):
         ticker_df['momentum_4w'] = prices / prices.shift(4) - 1
         ticker_df['roc_12w'] = prices.pct_change(12)
 
-        feature_dfs.append(ticker_df.dropna())
+        # Fill and only drop where one week returns are missing
+        ticker_df = ticker_df.ffill().dropna(subset = ['ret_1w'])
+
+        feature_dfs.append(ticker_df)
 
     result = pd.concat(feature_dfs, axis=0).reset_index()
 
