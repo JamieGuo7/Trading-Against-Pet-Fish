@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime as datetime
 
-# this a comment
 file_path = './data/tech_data.csv'
 raw_data = pd.read_csv(
     file_path,
