@@ -87,12 +87,12 @@ stocks = ["AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "META", "TSLA", "AVGO", "JPM",
 results = []
 
 for stock in stocks:
-    data = yf.download(stock, start="2025-11-01", end="2025-12-01")
+    data = yf.download(stock, start="2025-11-01", end="2025-12-28")
     data["daily_return"] = data["Close"].pct_change()
     returns = data["daily_return"].dropna()
 
     daily_variance = returns.var()
-    monthly_variance = daily_variance*21
+    monthly_variance = daily_variance*42
     volatility = np.sqrt(monthly_variance)
 
     results.append({
