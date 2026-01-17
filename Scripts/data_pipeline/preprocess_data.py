@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Getting data
 tickers = []
-with open('../../data/ESGU_Tickers.txt', 'r') as file:
+with open('./data/ESGU_Tickers.txt', 'r') as file:
     for line in file:
         tickers.append(line.strip())
 

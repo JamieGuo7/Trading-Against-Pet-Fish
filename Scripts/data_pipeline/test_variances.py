@@ -1,0 +1,42 @@
+import pandas as pd
+import datetime as datetime
+import yfinance as yf
+import numpy as np
+
+stocks = ["AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "META", "TSLA", "AVGO", "JPM", "LLY",
+    "MA", "V", "HD", "UNH", "COST", "PG", "CRM", "ADP", "BAC", "NOW", "TXN", "KO",
+    "NFLX", "SPGI", "PRU", "ORCL", "ADBE", "AXP", "XOM", "BRK-B", "IBM", "JNJ",
+    "GOOGL", "INTU", "MS", "CSCO", "HON", "PEG", "COP", "DIS", "ABBV", "GILD",
+    "NEE", "AMAT", "RTX", "MRK", "AMD", "TT", "GE", "BR", "GIS", "CMI", "MCD",
+    "AMT", "KMI", "PEP", "NI", "CRH", "BKNG", "ECL", "ZTS", "CVX", "LOW", "VZ",
+    "ELV", "ISRG", "PNC", "BK", "OKE", "GWW", "GS", "ADSK", "MCO", "LIN", "MMM",
+    "EQIX", "MMC", "CCI", "PGR", "VRTX", "EW", "CAT", "DHR", "LNG", "UNP", "NXPI",
+    "MET", "LRCX", "WMB", "C", "CI", "EXPD", "LKQ"] 
+
+results = []
+
+for stock in stocks:
+    data = yf.download(stock, start="2025-11-01", end="2025-12-28")
+    data["daily_return"] = data["Close"].pct_change()
+    returns = data["daily_return"].dropna()
+
+    daily_variance = returns.var()
+    monthly_variance = daily_variance*21
+    volatility = np.sqrt(monthly_variance)
+
+    results.append({
+        "Stock": stock,
+        "Monthly Variance": monthly_variance,
+        "Volatility": volatility
+    })
+
+    df = pd.DataFrame(results)
+
+def get_variances():
+    return df.set_index("Stock")["Monthly Variance"]
+
+if __name__ == "__main__":
+    print(df)
+
+
+

@@ -10,11 +10,11 @@ stocks = ["AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "META", "TSLA", "AVGO", "JPM",
     "AMT", "KMI", "PEP", "NI", "CRH", "BKNG", "ECL", "ZTS", "CVX", "LOW", "VZ",
     "ELV", "ISRG", "PNC", "BK", "OKE", "GWW", "GS", "ADSK", "MCO", "LIN", "MMM",
     "EQIX", "MMC", "CCI", "PGR", "VRTX", "EW", "CAT", "DHR", "LNG", "UNP", "NXPI",
-    "MET", "K", "LRCX", "WMB", "C", "HES", "CI", "EXPD", "LKQ"] 
+    "MET", "K", "LRCX", "WMB", "C", "CI", "EXPD", "LKQ"] 
 
 start_date = "2025-11-01"
 end_date = "2025-12-28"
-trading_days = 30
+trading_days = 58
 
 prices = yf.download(
     tickers=stocks,
@@ -51,3 +51,6 @@ pairs = (
 
 pairs = pairs[pairs["Stock_1"] < pairs["Stock_2"]].reset_index(drop=True)
 print(pairs.head)
+
+def get_covariance_matrix(): 
+    return monthly_cov
