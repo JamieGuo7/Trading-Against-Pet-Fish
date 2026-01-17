@@ -4,11 +4,11 @@ import ta
 
 # 1. Getting data
 tickers = []
-with open('../../data/ESGU_Tickers.txt', 'r') as file:
+with open('./data/ESGU_Tickers.txt', 'r') as file:
     for line in file:
         tickers.append(line.strip())
 
-raw_data = yf.download(tickers, period='5d', interval='1d', auto_adjust=True)
+raw_data = yf.download(tickers, period='6mo', interval='1d', auto_adjust=True)
 
 print(f"\n Processing {len(tickers)} tickers through full pipeline...")
 print("-" * 70)
@@ -67,6 +67,6 @@ print(f"   Columns: {len(long_format.columns)}")
 print(f"   Date range: {long_format['Date'].min()} to {long_format['Date'].max()}")
 
 
-LSTM_data_file_path = '../../data/ESGU_LSTM.csv'
+LSTM_data_file_path = './data/ESGU_LSTM.csv'
 
 long_format.to_csv(LSTM_data_file_path, index=False)
