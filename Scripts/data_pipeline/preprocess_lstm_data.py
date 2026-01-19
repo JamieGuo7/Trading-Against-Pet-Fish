@@ -67,6 +67,6 @@ print(f"   Columns: {len(long_format.columns)}")
 print(f"   Date range: {long_format['Date'].min()} to {long_format['Date'].max()}")
 
 
-LSTM_data_file_path = './data/ESGU_LSTM.csv'
+LSTM_data_file_path = './data/ESGU_6M_Recent.csv'
 
 long_format.to_csv(LSTM_data_file_path, index=False)
