@@ -3,20 +3,16 @@ import datetime as datetime
 import yfinance as yf
 import numpy as np
 
-stocks = ["AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "META", "TSLA", "AVGO", "JPM", "LLY",
-    "MA", "V", "HD", "UNH", "COST", "PG", "CRM", "ADP", "BAC", "NOW", "TXN", "KO",
-    "NFLX", "SPGI", "PRU", "ORCL", "ADBE", "AXP", "XOM", "BRK-B", "IBM", "JNJ",
-    "GOOGL", "INTU", "MS", "CSCO", "HON", "PEG", "COP", "DIS", "ABBV", "GILD",
-    "NEE", "AMAT", "RTX", "MRK", "AMD", "TT", "GE", "BR", "GIS", "CMI", "MCD",
-    "AMT", "KMI", "PEP", "NI", "CRH", "BKNG", "ECL", "ZTS", "CVX", "LOW", "VZ",
-    "ELV", "ISRG", "PNC", "BK", "OKE", "GWW", "GS", "ADSK", "MCO", "LIN", "MMM",
-    "EQIX", "MMC", "CCI", "PGR", "VRTX", "EW", "CAT", "DHR", "LNG", "UNP", "NXPI",
-    "MET", "LRCX", "WMB", "C", "CI", "EXPD", "LKQ"] 
+stocks = ["CEG", "KEYS", "LRCX", "HWM", "CARR", "CCK", "EME", "BKNG", "ES", 
+          "FBIN", "NVDA", "GOOG", "APD", "CNH", "MCD", "TT", "MRK", "CBOE", "KDP", "EA", 
+          "MCK", "AKAM", "NOC", "AMGN", "SBUX", "PHM", "CRWD", "CAT", "HUBB", "WELL", "BAC", 
+          "NDAQ", "AAPL",]
+
 
 results = []
 
 for stock in stocks:
-    data = yf.download(stock, start="2025-11-01", end="2025-12-28")
+    data = yf.download(stock, start="2025-03-16", end="2025-12-16")
     data["daily_return"] = data["Close"].pct_change()
     returns = data["daily_return"].dropna()
 
