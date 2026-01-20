@@ -546,7 +546,7 @@ results_df = pd.DataFrame(all_results)
 results_df = results_df.sort_values('test_dir_acc', ascending=False)
 
 # Save results
-results_df.to_csv(f'{RESULTS_DIR}/all_ticker_results_detailed.csv', index=False)
+results_df.to_csv(f'{RESULTS_DIR}/results.csv', index=False)
 
 # Save forecasts (simple version of results)
 forecasts_df = results_df[['ticker', 'latest_date', 'forecast_return',
