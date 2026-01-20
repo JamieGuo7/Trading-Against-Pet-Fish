@@ -2,19 +2,14 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 
-stocks = ["AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "META", "TSLA", "AVGO", "JPM", "LLY",
-    "MA", "V", "HD", "UNH", "COST", "PG", "CRM", "ADP", "BAC", "NOW", "TXN", "KO",
-    "NFLX", "SPGI", "PRU", "ORCL", "ADBE", "AXP", "XOM", "BRK-B", "IBM", "JNJ",
-    "GOOGL", "INTU", "MS", "CSCO", "HON", "PEG", "COP", "DIS", "ABBV", "GILD",
-    "NEE", "AMAT", "RTX", "MRK", "AMD", "TT", "GE", "BR", "GIS", "CMI", "MCD",
-    "AMT", "KMI", "PEP", "NI", "CRH", "BKNG", "ECL", "ZTS", "CVX", "LOW", "VZ",
-    "ELV", "ISRG", "PNC", "BK", "OKE", "GWW", "GS", "ADSK", "MCO", "LIN", "MMM",
-    "EQIX", "MMC", "CCI", "PGR", "VRTX", "EW", "CAT", "DHR", "LNG", "UNP", "NXPI",
-    "MET", "K", "LRCX", "WMB", "C", "CI", "EXPD", "LKQ"] 
+stocks = ["CEG", "KEYS", "LRCX", "HWM", "CARR", "CCK", "EME", "BKNG", "ES", 
+          "FBIN", "NVDA", "GOOG", "APD", "CNH", "MCD", "TT", "MRK", "CBOE", "KDP", "EA", 
+          "MCK", "AKAM", "NOC", "AMGN", "SBUX", "PHM", "CRWD", "CAT", "HUBB", "WELL", "BAC", 
+          "NDAQ", "AAPL",]
 
-start_date = "2025-11-01"
-end_date = "2025-12-28"
-trading_days = 58
+start_date = "2025-03-16"
+end_date = "2025-12-16"
+trading_days = 21
 
 prices = yf.download(
     tickers=stocks,
@@ -49,8 +44,10 @@ pairs = (
     .reset_index()
 )
 
-pairs = pairs[pairs["Stock_1"] < pairs["Stock_2"]].reset_index(drop=True)
+pairs = pairs[pairs["Stock_1"] <= pairs["Stock_2"]].reset_index(drop=True)
 print(pairs.head)
 
 def get_covariance_matrix(): 
     return monthly_cov
+
+monthly_cov.to_csv("monthly_covariance_matrix.csv")
